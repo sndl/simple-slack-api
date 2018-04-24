@@ -94,6 +94,8 @@ class SlackJSONMessageParser {
                 return extractPinRemovedEvent(slackSession, obj);
             case USER_TYPING:
                 return extractUserTypingEvent(slackSession, obj);
+            case HELLO:
+                return new Hello();
             default:
                 return new UnknownEvent(obj.toString());
         }
