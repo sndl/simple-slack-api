@@ -155,7 +155,7 @@ class SlackJSONAttachmentFormatter
             }
             if (action.getUrl() != null)
             {
-                actionJSON.addProperty("url", action.getValue());
+                actionJSON.addProperty("url", action.getUrl());
             }
             if (action.getStyle() != null)
             {
