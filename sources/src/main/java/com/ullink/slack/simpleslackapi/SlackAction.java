@@ -5,6 +5,7 @@ public class SlackAction {
 
     private String name;
     private String text;
+    private String url;
     private String style;
     private String type;
     private String value;
@@ -55,6 +56,14 @@ public class SlackAction {
 
     public void setStyle(String style) {
         this.style = style;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public SlackConfirmation getConfirm() {
