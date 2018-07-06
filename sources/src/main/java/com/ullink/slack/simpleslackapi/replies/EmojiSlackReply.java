@@ -5,9 +5,9 @@ import java.util.Map;
 public class EmojiSlackReply extends SlackReplyImpl implements SlackReply {
 
     private String timestamp;
-    private Map<String, String>  emoji;
+    private Map<String, String> emoji;
 
-    public EmojiSlackReply(boolean ok, String error, Map<String, String>  emoji, String timestamp) {
+    public EmojiSlackReply(boolean ok, String error, Map<String, String> emoji, String timestamp) {
         super(ok, error);
         this.timestamp = timestamp;
         this.emoji = emoji;

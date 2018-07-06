@@ -7,8 +7,7 @@ import java.nio.CharBuffer;
 /**
  * Holds utilities for {@link java.io.Reader}s.
  */
-public final class ReaderUtils
-{
+public final class ReaderUtils {
 
     /**
      * Size of char buffer that is read to.
@@ -17,14 +16,13 @@ public final class ReaderUtils
 
     /**
      * Reads everything from reader and returns as string.
+     *
      * @param reader the object read from
      * @return a string containing all the information
      * @throws IOException if failed copy
      */
-    public static String readAll(final Reader reader) throws IOException
-    {
-        if(reader == null)
-        {
+    public static String readAll(final Reader reader) throws IOException {
+        if (reader == null) {
             throw new NullPointerException("Reader is null...");
         }
 
@@ -34,8 +32,7 @@ public final class ReaderUtils
 
     }
 
-    private static void copy(final Reader from, final Appendable to) throws IOException
-    {
+    private static void copy(final Reader from, final Appendable to) throws IOException {
         final CharBuffer charBuffer = CharBuffer.allocate(BUFFER_SIZE);
         while (from.read(charBuffer) != -1) {
             charBuffer.flip();
@@ -44,8 +41,7 @@ public final class ReaderUtils
         }
     }
 
-    private ReaderUtils()
-    {
+    private ReaderUtils() {
 
     }
 }

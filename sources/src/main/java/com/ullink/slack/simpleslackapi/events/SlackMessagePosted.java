@@ -1,7 +1,6 @@
 package com.ullink.slack.simpleslackapi.events;
 
 import com.ullink.slack.simpleslackapi.*;
-import com.ullink.slack.simpleslackapi.SlackChannel;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -163,8 +162,7 @@ public class SlackMessagePosted implements SlackEvent {
             return UNKNOWN;
         }
 
-        public String getCode()
-        {
+        public String getCode() {
             return code;
         }
     }

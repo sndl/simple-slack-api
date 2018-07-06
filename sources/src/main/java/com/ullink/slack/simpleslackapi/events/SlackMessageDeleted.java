@@ -9,8 +9,7 @@ public class SlackMessageDeleted implements SlackEvent {
     private final String messageTimestamp;
     private final String deleteTimestamp;
 
-    public String getTimeStamp()
-    {
+    public String getTimeStamp() {
         return deleteTimestamp;
     }
 

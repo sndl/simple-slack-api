@@ -11,14 +11,12 @@ public class SlackReplyImpl implements ParsedSlackReply {
     }
 
     @Override
-    public boolean isOk()
-    {
+    public boolean isOk() {
         return ok;
     }
 
     @Override
-    public String getErrorMessage()
-    {
+    public String getErrorMessage() {
         return error;
     }
 }

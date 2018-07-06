@@ -2,7 +2,6 @@ package com.ullink.slack.simpleslackapi;
 
 import javax.websocket.WebSocketContainer;
 
-public interface WebSocketContainerProvider
-{
+public interface WebSocketContainerProvider {
     WebSocketContainer getWebSocketContainer();
 }

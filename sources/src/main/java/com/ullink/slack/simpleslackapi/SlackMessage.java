@@ -4,9 +4,7 @@ import com.ullink.slack.simpleslackapi.events.SlackEvent;
 import com.ullink.slack.simpleslackapi.events.SlackMessagePosted;
 
 /**
- * 
  * @deprecated use {@link SlackMessagePosted}
- *
  */
 @Deprecated
 public interface SlackMessage extends SlackEvent {

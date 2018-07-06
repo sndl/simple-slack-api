@@ -10,8 +10,7 @@ public class SlackChannelLeft implements SlackEvent {
     private SlackChannel slackChannel;
 
     @Override
-    public SlackEventType getEventType()
-    {
+    public SlackEventType getEventType() {
         return SlackEventType.SLACK_CHANNEL_LEFT;
     }
 

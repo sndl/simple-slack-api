@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class SlackMessageUpdated implements SlackEvent {
     private final SlackChannel channel;
-    private final String       messageTimestamp;
-    private final String       editionTimestamp;
-    private final String       newMessage;
+    private final String messageTimestamp;
+    private final String editionTimestamp;
+    private final String newMessage;
     private ArrayList<SlackAttachment> attachments;
 
     public SlackMessageUpdated(SlackChannel channel, String messageTimestamp, String editionTimestamp, String newMessage) {
@@ -19,33 +19,30 @@ public class SlackMessageUpdated implements SlackEvent {
         this.newMessage = newMessage;
     }
 
-    public SlackChannel getChannel()
-    {
+    public SlackChannel getChannel() {
         return channel;
     }
 
-    public String getMessageTimestamp()
-    {
+    public String getMessageTimestamp() {
         return messageTimestamp;
     }
 
-    public String getTimeStamp()
-    {
+    public String getTimeStamp() {
         return editionTimestamp;
     }
 
-    public String getNewMessage()
-    {
+    public String getNewMessage() {
         return newMessage;
     }
 
     @Override
-    public SlackEventType getEventType()
-    {
+    public SlackEventType getEventType() {
         return SlackEventType.SLACK_MESSAGE_UPDATED;
     }
 
-    public ArrayList<SlackAttachment> getAttachments() { return attachments; }
+    public ArrayList<SlackAttachment> getAttachments() {
+        return attachments;
+    }
 
     public void setAttachments(ArrayList<SlackAttachment> attachments) {
         this.attachments = attachments;

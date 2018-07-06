@@ -8,11 +8,11 @@ import lombok.Data;
 @Data
 public class PinAdded implements SlackEvent {
 
-  private final SlackUser sender;
-  private final SlackChannel channel;
-  private final String timestamp;
-  private final SlackFile file;
-  private final String message;
+    private final SlackUser sender;
+    private final SlackChannel channel;
+    private final String timestamp;
+    private final SlackFile file;
+    private final String message;
 
     @Override
     public SlackEventType getEventType() {

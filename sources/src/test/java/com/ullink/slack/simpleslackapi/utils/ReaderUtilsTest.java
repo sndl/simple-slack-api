@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ReaderUtilsTest {
-    
+
     @Test
     public void readAll() throws Exception {
         // Given
