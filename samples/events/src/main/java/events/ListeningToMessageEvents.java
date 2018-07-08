@@ -9,19 +9,15 @@ import com.ullink.slack.simpleslackapi.listeners.SlackMessagePostedListener;
 /**
  * Samples showing how to listen to message events
  */
-public class ListeningToMessageEvents
-{
+public class ListeningToMessageEvents {
     /**
      * This method shows how to register a listener on a SlackSession
      */
-    public void registeringAListener(SlackSession session)
-    {
+    public void registeringAListener(SlackSession session) {
         // first define the listener
-        SlackMessagePostedListener messagePostedListener = new SlackMessagePostedListener()
-        {
+        SlackMessagePostedListener messagePostedListener = new SlackMessagePostedListener() {
             @Override
-            public void onEvent(SlackMessagePosted event, SlackSession session)
-            {
+            public void onEvent(SlackMessagePosted event, SlackSession session) {
                 SlackChannel channelOnWhichMessageWasPosted = event.getChannel();
                 String messageContent = event.getMessageContent();
                 SlackUser messageSender = event.getSender();
@@ -38,13 +34,10 @@ public class ListeningToMessageEvents
     /**
      * This method demonstrate what is available in a SlackMessagePosted event
      */
-    public void slackMessagePostedEventContent(SlackSession session)
-    {
-        session.addMessagePostedListener(new SlackMessagePostedListener()
-        {
+    public void slackMessagePostedEventContent(SlackSession session) {
+        session.addMessagePostedListener(new SlackMessagePostedListener() {
             @Override
-            public void onEvent(SlackMessagePosted event, SlackSession session1)
-            {
+            public void onEvent(SlackMessagePosted event, SlackSession session1) {
                 // if I'm only interested on a certain channel :
                 // I can filter out messages coming from other channels
                 SlackChannel theChannel = session1.findChannelByName("thechannel");
@@ -74,7 +67,7 @@ public class ListeningToMessageEvents
                 }
 
                 // once you've defined that the bot needs to react you can use the session to do that :
-                session1.sendMessage(event.getChannel(),"Message with keyword was sent by the expected user on this channel !");
+                session1.sendMessage(event.getChannel(), "Message with keyword was sent by the expected user on this channel !");
             }
         });
     }
