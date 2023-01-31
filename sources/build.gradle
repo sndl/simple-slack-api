@@ -22,7 +22,7 @@ apply from: project.rootProject.file("gradle/scripts/coverage.gradle")
 
 group = 'com.ullink.slack'
 archivesBaseName = 'simpleslackapi'
-version = '1.4.0'
+version = '1.4.0-patched-1'
 
 
 def pomConfig = {
@@ -162,7 +162,7 @@ artifacts {
 }
 
 signing {
-   // required false
+    required false
     sign configurations.archives
     sign publishing.publications.mavenJava
 }
