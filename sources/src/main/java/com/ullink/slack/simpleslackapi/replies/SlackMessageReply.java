@@ -1,8 +1,11 @@
 package com.ullink.slack.simpleslackapi.replies;
 
+import com.google.gson.annotations.SerializedName;
+
 //TODO: figure out this hierarchy
 public class SlackMessageReply extends SlackReplyImpl implements ParsedSlackReply {
     private long replyTo;
+    @SerializedName("ts")
     private String timestamp;
 
     public SlackMessageReply(boolean ok, String error, long replyTo, String timestamp) {
