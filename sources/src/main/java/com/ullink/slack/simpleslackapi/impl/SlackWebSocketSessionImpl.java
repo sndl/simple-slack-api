@@ -169,7 +169,6 @@ class SlackWebSocketSessionImpl extends AbstractSlackSessionImpl implements Slac
     private static final Logger               LOGGER                     = LoggerFactory.getLogger(SlackWebSocketSessionImpl.class);
 
     private  static final int                 DEFAULT_HEARTBEAT_IN_MILLIS = 30000;
-
     private volatile Session websocketSession;
     private final    String  authToken;
     /**
@@ -189,6 +188,7 @@ class SlackWebSocketSessionImpl extends AbstractSlackSessionImpl implements Slac
 
     private final boolean                     reconnectOnDisconnection;
     private final boolean                     isRateLimitSupported;
+    private final int                         fetchChannelLimit = 1000;
     private final boolean                     legacyMode;
     private volatile boolean                  wantDisconnect;
 
@@ -323,11 +323,11 @@ class SlackWebSocketSessionImpl extends AbstractSlackSessionImpl implements Slac
     /**
      * newly added variable
      */
-    SlackWebSocketSessionImpl(WebSocketContainerProvider webSocketContainerProvider, String authToken, String appLevelToken, String slackApiBase, boolean reconnectOnDisconnection, boolean isRateLimitSupported, long heartbeat, TimeUnit unit, boolean legacyMode) {
-    	this(webSocketContainerProvider, authToken, appLevelToken, slackApiBase, null, null, -1, null, null, reconnectOnDisconnection, isRateLimitSupported, heartbeat, unit, legacyMode);
+    SlackWebSocketSessionImpl(WebSocketContainerProvider webSocketContainerProvider, String authToken, String appLevelToken, String slackApiBase, boolean reconnectOnDisconnection, boolean isRateLimitSupported, long heartbeat, TimeUnit unit, boolean legacyMode, int fetchChannelLimit) {
+    	this(webSocketContainerProvider, authToken, appLevelToken, slackApiBase, null, null, -1, null, null, reconnectOnDisconnection, isRateLimitSupported, heartbeat, unit, legacyMode, fetchChannelLimit);
     }
 
-    SlackWebSocketSessionImpl(WebSocketContainerProvider webSocketContainerProvider, String authToken, String appLevelToken, String slackApiBase, Proxy.Type proxyType, String proxyAddress, int proxyPort, String proxyUser, String proxyPassword, boolean reconnectOnDisconnection, boolean isRateLimitSupported, long heartbeat, TimeUnit unit, boolean legacyMode) {
+    SlackWebSocketSessionImpl(WebSocketContainerProvider webSocketContainerProvider, String authToken, String appLevelToken, String slackApiBase, Proxy.Type proxyType, String proxyAddress, int proxyPort, String proxyUser, String proxyPassword, boolean reconnectOnDisconnection, boolean isRateLimitSupported, long heartbeat, TimeUnit unit, boolean legacyMode, int fetchChannelLimit) {
         this.authToken = authToken;
         /**
          * newly added variable
@@ -1127,8 +1127,9 @@ class SlackWebSocketSessionImpl extends AbstractSlackSessionImpl implements Slac
     public SlackMessageHandle<GenericSlackReply> listChannels(String nextCursor)
     {
         Map<String, String> params = new HashMap<>();
-        params.put("limit", "1000");
+        params.put("limit", Integer.toString(fetchChannelLimit));
         params.put("types", "public_channel,private_channel");
+        params.put("exclude_archived", "true");
         if (nextCursor != null)
         {
             params.put("cursor", nextCursor);

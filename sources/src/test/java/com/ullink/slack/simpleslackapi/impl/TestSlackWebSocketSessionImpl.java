@@ -15,7 +15,7 @@ public class TestSlackWebSocketSessionImpl {
     public void testSendMessageWithNullChannel(@Mocked WebSocketContainerProvider provider)
    {
         SlackWebSocketSessionImpl webSocketSession = new SlackWebSocketSessionImpl(provider,
-                "", "", null, false, false, 42L, TimeUnit.MILLISECONDS, true);
+                "", "", null, false, false, 42L, TimeUnit.MILLISECONDS, true, 1000);
         try {
             webSocketSession.sendMessage((SlackChannel)null, "");
         } catch (NullPointerException e) {

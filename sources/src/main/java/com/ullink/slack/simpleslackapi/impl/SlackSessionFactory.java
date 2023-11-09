@@ -15,7 +15,7 @@ public class SlackSessionFactory {
      */
     public static SlackSession createWebSocketSlackSession(String authToken, String appLevelToken)
     {
-    	return new SlackWebSocketSessionImpl(null, authToken, appLevelToken, null, true, true, 0, null, true);
+    	return new SlackWebSocketSessionImpl(null, authToken, appLevelToken, null, true, true, 0, null, true, 1000);
     }
 
     /**
@@ -27,7 +27,7 @@ public class SlackSessionFactory {
      */
     public static SlackSession createWebSocketSlackSession(String authToken, String appLevelToken, boolean legacyMode)
     {
-        return new SlackWebSocketSessionImpl(null, authToken, appLevelToken, null, true, true, 0, null, legacyMode);
+        return new SlackWebSocketSessionImpl(null, authToken, appLevelToken, null, true, true, 0, null, legacyMode, 1000);
     }
 
 
@@ -36,7 +36,7 @@ public class SlackSessionFactory {
      */
     public static SlackSession createWebSocketSlackSession(String authToken)
     {
-        return new SlackWebSocketSessionImpl(null, authToken, null, null, true, true, 0, null, true);
+        return new SlackWebSocketSessionImpl(null, authToken, null, null, true, true, 0, null, true, 1000);
     }
 
     /**
@@ -77,6 +77,7 @@ public class SlackSessionFactory {
         private boolean autoreconnection;
         private boolean rateLimitSupport = true;
         private boolean legacyMode = true;
+        private int fetchChannelLimit = 1000;
 
         /**
          * Add new variable -appLevelToken
@@ -166,8 +167,13 @@ public class SlackSessionFactory {
             return this;
         }
 
+        public SlackSessionFactoryBuilder withFetchChannelLimit(int fetchChannelLimit) {
+            this.fetchChannelLimit = fetchChannelLimit;
+            return this;
+        }
+
         public SlackSession build() {
-            return new SlackWebSocketSessionImpl(provider, authToken, appLevelToken, slackBaseApi, proxyType, proxyAddress, proxyPort, proxyUser, proxyPassword, autoreconnection, rateLimitSupport, heartbeat, unit, legacyMode);
+            return new SlackWebSocketSessionImpl(provider, authToken, appLevelToken, slackBaseApi, proxyType, proxyAddress, proxyPort, proxyUser, proxyPassword, autoreconnection, rateLimitSupport, heartbeat, unit, legacyMode, fetchChannelLimit);
         }
     }
 }
